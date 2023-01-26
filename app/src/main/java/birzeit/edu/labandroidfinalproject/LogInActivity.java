@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private Button logInBtn;
+    private Button logInBtn;//yasmeena
     private Button goToSignUpBtn;
 
     @Override
