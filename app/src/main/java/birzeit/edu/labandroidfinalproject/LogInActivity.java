@@ -1,15 +1,17 @@
 package birzeit.edu.labandroidfinalproject;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+import birzeit.edu.labandroidfinalproject.Adapters.SharedPrefManager;
 
 public class LogInActivity extends AppCompatActivity {
-
-    private Button logInBtn;//yasmeena
+    private DatabaseHelper dbHelper;
+    private Button logInBtn;
     private Button goToSignUpBtn;
 
     @Override
@@ -17,21 +19,52 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         extracted();
-
     }
 
     private void extracted() {
-        logInBtn = findViewById(R.id.log_in_btn);
-        goToSignUpBtn = findViewById(R.id.go_to_sign_up_btn);
+        dbHelper = new DatabaseHelper(this);
+        logInBtn = findViewById(R.id.btnSignIn);
+        goToSignUpBtn = findViewById(R.id.btnSignUp);
+        EditText email = (EditText) findViewById(R.id.signInEmail);
+        EditText password = (EditText) findViewById(R.id.signInPassword);
+        CheckBox rememberMe = (CheckBox) findViewById(R.id.rememberMe);
+        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
+        boolean loggedIn = sharedPrefManager.readBoolean("loggedIn", false);
+        email.setText(sharedPrefManager.readString("Email", ""));
+        password.setText(sharedPrefManager.readString("Password", ""));
 
         logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LogInActivity.this, NavigationDrawerActivity.class);
-                startActivity(intent);
-                finish();
+                String enteredEmail = email.getText().toString();
+                String enteredPassword = password.getText().toString();
+
+                // Check if the entered email and password are correct and registered in the database
+                if ( dbHelper.isValidEmailAndPassword(enteredEmail, enteredPassword)) {
+                    // If the "remember me" checkbox is checked, save the entered email and password in shared preferences
+                    if (rememberMe.isChecked()) {
+                        sharedPrefManager.writeString("Email", enteredEmail);
+                        sharedPrefManager.writeString("Password", enteredPassword);
+                    } else {
+                        // If the "remember me" checkbox is not checked, clear the saved email and password in shared preferences
+                        sharedPrefManager.writeString("Email", "");
+                        sharedPrefManager.writeString("Password", "");
+                    }
+                    // Start the next activity
+                    Intent intent = new Intent(LogInActivity.this, NavigationDrawerActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // Show error message if the entered email and password are incorrect or not registered
+                    Toast.makeText(LogInActivity.this, "Incorrect email or password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+
+                    ////////////////////////////////////////////////////
+
+
 
         goToSignUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
