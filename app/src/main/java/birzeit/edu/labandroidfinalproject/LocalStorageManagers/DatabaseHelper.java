@@ -137,6 +137,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM users WHERE email = ?", new String[] {email});
     }
+
+    public String getUserPreferredContinentByEmail(String email){
+        String preferredContinent = "";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email = ?", new String[] {email});
+        while (cursor.moveToNext()){
+            preferredContinent = cursor.getString(5);
+        }
+        return preferredContinent;
+    }
+
     public boolean isEmailExist(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME,

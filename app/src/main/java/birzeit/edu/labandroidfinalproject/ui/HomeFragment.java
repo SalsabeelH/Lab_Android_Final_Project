@@ -35,6 +35,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 import birzeit.edu.labandroidfinalproject.Models.Destination;
 import birzeit.edu.labandroidfinalproject.NavigationDrawerActivity;
 import birzeit.edu.labandroidfinalproject.databinding.FragmentHomeBinding;
@@ -74,8 +75,8 @@ public class HomeFragment extends Fragment{
         /*
          * Get the preferred continent
          */
-        String[] continents = {"Africa", "Antarctica", "Asia", "Australia", "Europe", "North America", "South America"};
-        String preferredContinent = continents[0];
+        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance((NavigationDrawerActivity) getActivity());
+        String preferredContinent = sharedPrefManager.readString("Preferred Continent","Africa");;
         /*
          * Request to get all destinations using Volley and map them to Destination objects
          */

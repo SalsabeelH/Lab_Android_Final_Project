@@ -44,6 +44,7 @@ public class LogInActivity extends AppCompatActivity {
                 String enteredEmail = email.getText().toString();
                 String enteredPassword = password.getText().toString();
                 Pair<Boolean, String> result = dbHelper.isValidEmailAndPassword(enteredEmail, enteredPassword);
+                sharedPrefManager.writeString("Preferred Continent", dbHelper.getUserPreferredContinentByEmail(enteredEmail));
 
                 // Check if the entered email and password are correct and registered in the database
                 if ( result.first) {
