@@ -7,29 +7,29 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="birzeit.edu.labandroidfinalproject.ui.home.HomeFragment"
+        android:name="birzeit.edu.labandroidfinalproject.ui.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_all"
-        android:name="birzeit.edu.labandroidfinalproject.ui.all.AllFragment"
+        android:name="birzeit.edu.labandroidfinalproject.ui.AllFragment"
         android:label="@string/menu_all"
         tools:layout="@layout/fragment_all" />
 
     <fragment
         android:id="@+id/nav_favorite"
-        android:name="birzeit.edu.labandroidfinalproject.ui.favorite.FavoriteFragment"
+        android:name="birzeit.edu.labandroidfinalproject.ui.FavoriteFragment"
         android:label="@string/menu_favorite"
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="birzeit.edu.labandroidfinalproject.ui.profile.ProfileFragment"
+        android:name="birzeit.edu.labandroidfinalproject.ui.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/nav_sorted"
-        android:name="birzeit.edu.labandroidfinalproject.ui.sorted.SortedFragment"
+        android:name="birzeit.edu.labandroidfinalproject.ui.SortedFragment"
         android:label="@string/menu_sorted"
         tools:layout="@layout/fragment_sorted" />
 </navigation>
