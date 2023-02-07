@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.core.util.Pair;
 import birzeit.edu.labandroidfinalproject.Adapters.SharedPrefManager;
 
 public class LogInActivity extends AppCompatActivity {
@@ -40,9 +41,10 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String enteredEmail = email.getText().toString();
                 String enteredPassword = password.getText().toString();
+                Pair<Boolean, String> result = dbHelper.isValidEmailAndPassword(enteredEmail, enteredPassword);
 
                 // Check if the entered email and password are correct and registered in the database
-                if ( dbHelper.isValidEmailAndPassword(enteredEmail, enteredPassword)) {
+                if ( result.first) {
                     // If the "remember me" checkbox is checked, save the entered email and password in shared preferences
                     if (rememberMe.isChecked()) {
                         sharedPrefManager.writeString("Email", enteredEmail);
@@ -58,7 +60,7 @@ public class LogInActivity extends AppCompatActivity {
                     finish();
                 } else {
                     // Show error message if the entered email and password are incorrect or not registered
-                    Toast.makeText(LogInActivity.this, "Incorrect email or password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this, "Incorrect email or password|| email is already taken", Toast.LENGTH_SHORT).show();
                 }
             }
         });

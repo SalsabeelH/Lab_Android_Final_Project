@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import androidx.core.util.Pair;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -15,6 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_LAST_NAME = "last_name";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_PREFERRED_TRAVEL_DESTINATIONS = "preferred_travel_destinations";
+
 
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_NAME + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -43,6 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
    ////////////////////////////////////
 
     public void addUser(String email, String firstName, String lastName, String password, String preferredTravelDestinations) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_EMAIL, email);
@@ -134,15 +137,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM users WHERE email = ?", new String[] {email});
     }
+    public boolean isEmailExist(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME,
+                new String[]{COLUMN_EMAIL},
+                COLUMN_EMAIL + "=?",
+                new String[]{email},
+                null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count > 0;
+    }
 
 
-    public boolean isValidEmailAndPassword(String email, String password) {
+
+  /*  public boolean isValidEmailAndPassword(String email, String password) {
+
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             return false;
         }
         if (password.isEmpty() || password.length() < 6) {
             return false;
         }
+        if (isEmailExist(email)) {
+            return false;
+        }
         return true;
     }
+    */
+
+    public Pair<Boolean, String> isValidEmailAndPassword(String email, String password) {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return new Pair<>(false, "Invalid email format");
+        }
+        if (password.isEmpty() || password.length() < 6) {
+            return new Pair<>(false, "Password must be at least 6 characters");
+        }
+        // Check if the email is already registered in the database
+        if (!isEmailExist(email)) {
+            return new Pair<>(false, "You have to sign up");
+        }
+        return new Pair<>(true, "");
+    }
+
 }

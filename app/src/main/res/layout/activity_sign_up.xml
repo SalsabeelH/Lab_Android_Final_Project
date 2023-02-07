@@ -88,12 +88,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/ret"
-        android:layout_width="32dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/actionModeCloseDrawable"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck"
-        />
+
 
 </FrameLayout>
