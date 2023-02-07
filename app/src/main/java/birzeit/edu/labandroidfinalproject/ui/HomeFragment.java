@@ -48,8 +48,9 @@ public class HomeFragment extends Fragment{
     private TextView textLongitude;
     private TextView textLatitude;
     private TextView textDescription;
+    private TextView textCost;
     private ImageView imageView;
-//    private MapView mapView;
+    private MapView mapView;
     private RequestQueue queue;
     private ArrayList<Destination> favoriteDestinations = new ArrayList<>();
 
@@ -66,7 +67,8 @@ public class HomeFragment extends Fragment{
         textLongitude = binding.textLongitude;
         textLatitude = binding.textLatitude;
         textDescription = binding.textDescription;
-//        mapView = binding.mapView;
+        textCost = binding.textCost;
+        mapView = binding.mapView;
         imageView = binding.img;
 
         /*
@@ -85,6 +87,7 @@ public class HomeFragment extends Fragment{
             textLongitude.setText(randomDestination.getLongitude().substring(0,7));
             textLatitude.setText(randomDestination.getLatitude().substring(0,7));
             textDescription.setText(randomDestination.getDescription());
+            textCost.setText(randomDestination.getCost());
             Glide.with((NavigationDrawerActivity) getActivity()).load(randomDestination.getImg()).into(imageView);
         } else{
             queue = Volley.newRequestQueue(((NavigationDrawerActivity) getActivity()));
@@ -111,11 +114,9 @@ public class HomeFragment extends Fragment{
                     textLongitude.setText(randomDestination.getLongitude().substring(0,7));
                     textLatitude.setText(randomDestination.getLatitude().substring(0,7));
                     textDescription.setText(randomDestination.getDescription());
+                    textCost.setText(randomDestination.getCost());
                     Glide.with((NavigationDrawerActivity) getActivity()).load(randomDestination.getImg()).into(imageView);
-
-
-//                    mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS);
-
+                    mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS);
 
                 }
             }, new Response.ErrorListener() {

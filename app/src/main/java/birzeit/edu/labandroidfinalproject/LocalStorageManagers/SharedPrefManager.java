@@ -1,4 +1,4 @@
-package birzeit.edu.labandroidfinalproject;
+package birzeit.edu.labandroidfinalproject.LocalStorageManagers;
 
 
 import android.content.Context;
@@ -11,7 +11,7 @@ public class SharedPrefManager {
     private static SharedPreferences sharedPreferences = null;
     private SharedPreferences.Editor editor = null;
 
-    static SharedPrefManager getInstance(Context context) {
+    public static SharedPrefManager getInstance(Context context) {
         if (ourInstance != null) {
             return ourInstance;
         }
@@ -32,5 +32,27 @@ public class SharedPrefManager {
 
     public String readString(String key, String defaultValue) {
         return sharedPreferences.getString(key, defaultValue);
+    }
+
+    public boolean writeBoolean(String key, boolean value) {
+        editor.putBoolean(key, value);
+        return editor.commit();
+    }
+    public boolean readBoolean(String key, boolean defaultValue) {
+        return sharedPreferences.getBoolean(key, defaultValue);
+    }
+    public boolean writeInt(String key, int value) {
+        editor.putInt(key, value);
+        return editor.commit();
+    }
+    public int readInt(String key, int defaultValue) {
+        return sharedPreferences.getInt(key, defaultValue);
+    }
+    public boolean writeFloat(String key, float value) {
+        editor.putFloat(key, value);
+        return editor.commit();
+    }
+    public float readFloat(String key, float defaultValue) {
+        return sharedPreferences.getFloat(key, defaultValue);
     }
 }

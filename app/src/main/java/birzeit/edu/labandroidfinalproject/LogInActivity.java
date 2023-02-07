@@ -10,7 +10,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.core.util.Pair;
-import birzeit.edu.labandroidfinalproject.Adapters.SharedPrefManager;
+
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.DatabaseHelper;
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 
 public class LogInActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;

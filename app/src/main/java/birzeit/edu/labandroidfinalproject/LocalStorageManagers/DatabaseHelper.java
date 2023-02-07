@@ -1,4 +1,4 @@
-package birzeit.edu.labandroidfinalproject;
+package birzeit.edu.labandroidfinalproject.LocalStorageManagers;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
