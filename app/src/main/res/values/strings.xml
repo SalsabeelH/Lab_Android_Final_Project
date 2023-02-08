@@ -9,6 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="menu_home">Home</string>
     <string name="menu_all">All</string>
+    <string name="destination_prompt">Destination</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_sorted">Sorted</string>
     <string name="menu_profile">Profile</string>
