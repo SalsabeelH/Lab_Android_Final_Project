@@ -4,15 +4,177 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:forceHasOverlappingRendering="true"
     tools:context=".DestinationActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="169dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="108dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/img_city7"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="26dp"
+        android:src="@drawable/city"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/text_city7"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/img_city7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_country7"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/australia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_city7" />
+
+    <TextView
+        android:id="@+id/text_country7"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/img_country7"
+        app:layout_constraintTop_toBottomOf="@+id/text_city7" />
+
+    <ImageView
+        android:id="@+id/img_continent7"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:src="@drawable/world_map"
+        app:layout_constraintStart_toEndOf="@+id/text_country7"
+        app:layout_constraintTop_toBottomOf="@+id/text_city7" />
+
+    <TextView
+        android:id="@+id/text_continent7"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/img_continent7"
+        app:layout_constraintTop_toBottomOf="@+id/text_city7" />
+
+    <ImageView
+        android:id="@+id/img_longitude7"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/longitude"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_country7" />
+
+
+    <TextView
+        android:id="@+id/text_longitude7"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/img_longitude7"
+        app:layout_constraintTop_toBottomOf="@+id/text_country7" />
+
+    <ImageView
+        android:id="@+id/img_latitude7"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/latitude"
+        app:layout_constraintStart_toEndOf="@+id/text_longitude7"
+        app:layout_constraintTop_toBottomOf="@+id/img_continent7" />
+
+    <TextView
+        android:id="@+id/text_latitude7"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/img_latitude7"
+        app:layout_constraintTop_toBottomOf="@+id/text_continent7" />
+
+    <TextView
+        android:id="@+id/text_cost7"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="38dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/save_money"
+        app:layout_constraintStart_toEndOf="@+id/text_city7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_description"
+        android:layout_width="142dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_longitude7" />
+
+    <Button
+        android:id="@+id/btn_image"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:text="image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_map"
+        app:layout_constraintTop_toBottomOf="@+id/text_latitude7" />
+
+    <Button
+        android:id="@+id/btn_map"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="28dp"
+        android:text="map"
+        app:layout_constraintStart_toEndOf="@+id/btn_description"
+        app:layout_constraintTop_toBottomOf="@+id/img_latitude7" />
+
+    <ListView
+        android:layout_width="372dp"
+        android:layout_height="432dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_description"
+        app:layout_constraintVertical_bias="0.961" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
