@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.DatabaseHelper;
+
 public class SignUpActivity extends AppCompatActivity {
     private Button signUpBtn;
     private DatabaseHelper dbHelper;

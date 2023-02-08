@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment">
 
-
     <ImageView
         android:id="@+id/img_city"
         android:layout_width="59dp"
         android:layout_height="48dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="26dp"
         android:src="@drawable/city"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,14 +19,12 @@
 
     <TextView
         android:id="@+id/text_city"
-        android:layout_width="262dp"
+        android:layout_width="119dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="38dp"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toEndOf="@+id/img_city"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +32,7 @@
         android:id="@+id/img_country"
         android:layout_width="59dp"
         android:layout_height="48dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/australia"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,13 +40,12 @@
 
     <TextView
         android:id="@+id/text_country"
-        android:layout_width="262dp"
+        android:layout_width="119dp"
         android:layout_height="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/img_country"
         app:layout_constraintTop_toBottomOf="@+id/text_city" />
 
@@ -57,76 +53,96 @@
         android:id="@+id/img_continent"
         android:layout_width="59dp"
         android:layout_height="48dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
         android:src="@drawable/world_map"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_country" />
+        app:layout_constraintStart_toEndOf="@+id/text_country"
+        app:layout_constraintTop_toBottomOf="@+id/text_city" />
 
     <TextView
         android:id="@+id/text_continent"
-        android:layout_width="262dp"
+        android:layout_width="119dp"
         android:layout_height="48dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="12dp"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/img_continent"
-        app:layout_constraintTop_toBottomOf="@+id/text_country" />
+        app:layout_constraintTop_toBottomOf="@+id/text_city" />
 
     <ImageView
         android:id="@+id/img_longitude"
         android:layout_width="59dp"
         android:layout_height="48dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/longitude"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_continent" />
+        app:layout_constraintTop_toBottomOf="@+id/img_country" />
+
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="355dp"
+        android:layout_height="141dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:mapbox_cameraTargetLat="31.952162"
+        app:mapbox_cameraTargetLng="35.233154"
+        app:mapbox_cameraZoom="4.0" />
 
     <TextView
         android:id="@+id/text_longitude"
-        android:layout_width="99dp"
+        android:layout_width="119dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/img_longitude"
-        app:layout_constraintTop_toBottomOf="@+id/text_continent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_country" />
+
+    <ImageView
+        android:id="@+id/img_latitude"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/latitude"
+        app:layout_constraintStart_toEndOf="@+id/text_longitude"
+        app:layout_constraintTop_toBottomOf="@+id/img_continent" />
 
     <TextView
         android:id="@+id/text_latitude"
-        android:layout_width="99dp"
+        android:layout_width="119dp"
         android:layout_height="48dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="12dp"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toEndOf="@+id/img_latitude"
         app:layout_constraintTop_toBottomOf="@+id/text_continent" />
 
-    <!--    <com.mapbox.maps.MapView-->
-    <!--        android:id="@+id/mapView"-->
-    <!--        android:layout_width="408dp"-->
-    <!--        android:layout_height="200dp"-->
-    <!--        app:mapbox_cameraTargetLat="31.952162"-->
-    <!--        app:mapbox_cameraTargetLng="35.233154"-->
-    <!--        app:mapbox_cameraZoom="9.0"-->
-    <!--        tools:layout_editor_absoluteX="1dp"-->
-    <!--        tools:layout_editor_absoluteY="531dp" />-->
+
+    <TextView
+        android:id="@+id/text_cost"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="38dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="298dp"
-        android:layout_height="156dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/img"
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_latitude">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,23 +159,23 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/img_latitude"
-        android:layout_width="59dp"
-        android:layout_height="48dp"
-        android:src="@drawable/latitude"
-        app:layout_constraintStart_toEndOf="@+id/text_longitude"
-        app:layout_constraintTop_toBottomOf="@+id/text_continent" />
+        android:id="@+id/img"
+        android:layout_width="336dp"
+        android:layout_height="159dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/airplanearounderth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
     <ImageView
-        android:id="@+id/img"
-        android:layout_width="321dp"
-        android:layout_height="196dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/airplanearounderth"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/imageView2"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/save_money"
+        app:layout_constraintStart_toEndOf="@+id/text_city"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

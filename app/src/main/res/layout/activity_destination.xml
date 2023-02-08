@@ -4,18 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AllFragment">
+    tools:context=".DestinationActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/continent_destinations_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="657dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="169dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="108dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

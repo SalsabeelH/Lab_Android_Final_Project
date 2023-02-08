@@ -10,7 +10,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.core.util.Pair;
-import birzeit.edu.labandroidfinalproject.Adapters.SharedPrefManager;
+
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.DatabaseHelper;
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 
 public class LogInActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
@@ -42,6 +44,7 @@ public class LogInActivity extends AppCompatActivity {
                 String enteredEmail = email.getText().toString();
                 String enteredPassword = password.getText().toString();
                 Pair<Boolean, String> result = dbHelper.isValidEmailAndPassword(enteredEmail, enteredPassword);
+                sharedPrefManager.writeString("Preferred Continent", dbHelper.getUserPreferredContinentByEmail(enteredEmail));
 
                 // Check if the entered email and password are correct and registered in the database
                 if ( result.first) {

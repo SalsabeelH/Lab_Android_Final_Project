@@ -23,20 +23,28 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
+import com.mapbox.geojson.Point;
+import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
+import com.mapbox.maps.plugin.annotation.AnnotationPlugin;
+import com.mapbox.maps.plugin.annotation.AnnotationPluginImplKt;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManagerKt;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
+import com.mapbox.maps.plugin.delegates.MapPluginProviderDelegate;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 import birzeit.edu.labandroidfinalproject.Models.Destination;
 import birzeit.edu.labandroidfinalproject.NavigationDrawerActivity;
+import birzeit.edu.labandroidfinalproject.R;
 import birzeit.edu.labandroidfinalproject.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment{
@@ -48,8 +56,9 @@ public class HomeFragment extends Fragment{
     private TextView textLongitude;
     private TextView textLatitude;
     private TextView textDescription;
+    private TextView textCost;
     private ImageView imageView;
-//    private MapView mapView;
+    private MapView mapView;
     private RequestQueue queue;
     private ArrayList<Destination> favoriteDestinations = new ArrayList<>();
 
@@ -66,14 +75,15 @@ public class HomeFragment extends Fragment{
         textLongitude = binding.textLongitude;
         textLatitude = binding.textLatitude;
         textDescription = binding.textDescription;
-//        mapView = binding.mapView;
+        textCost = binding.textCost;
+        mapView = binding.mapView;
         imageView = binding.img;
 
         /*
          * Get the preferred continent
          */
-        String[] continents = {"Africa", "Antarctica", "Asia", "Australia", "Europe", "North America", "South America"};
-        String preferredContinent = continents[0];
+        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance((NavigationDrawerActivity) getActivity());
+        String preferredContinent = sharedPrefManager.readString("Preferred Continent","Africa");;
         /*
          * Request to get all destinations using Volley and map them to Destination objects
          */
@@ -85,7 +95,10 @@ public class HomeFragment extends Fragment{
             textLongitude.setText(randomDestination.getLongitude().substring(0,7));
             textLatitude.setText(randomDestination.getLatitude().substring(0,7));
             textDescription.setText(randomDestination.getDescription());
+            textCost.setText(randomDestination.getCost());
             Glide.with((NavigationDrawerActivity) getActivity()).load(randomDestination.getImg()).into(imageView);
+            setCameraPosition(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
+            setMarkerOnMap(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
         } else{
             queue = Volley.newRequestQueue(((NavigationDrawerActivity) getActivity()));
             String url = "https://run.mocky.io/v3/d1a9c002-6e88-4d1e-9f39-930615876bca";
@@ -111,13 +124,12 @@ public class HomeFragment extends Fragment{
                     textLongitude.setText(randomDestination.getLongitude().substring(0,7));
                     textLatitude.setText(randomDestination.getLatitude().substring(0,7));
                     textDescription.setText(randomDestination.getDescription());
+                    textCost.setText(randomDestination.getCost());
                     Glide.with((NavigationDrawerActivity) getActivity()).load(randomDestination.getImg()).into(imageView);
-
-
-//                    mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS);
-
-
+                    setCameraPosition(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
+                    setMarkerOnMap(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
                 }
+
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
@@ -128,6 +140,26 @@ public class HomeFragment extends Fragment{
         }
 
         return root;
+    }
+
+    private void setCameraPosition(double longitude, double latitude){
+        CameraOptions cameraPosition = new CameraOptions.Builder()
+                .zoom(4.0)
+                .center(Point.fromLngLat(longitude, latitude))
+                .build();
+        // set camera position
+        mapView.getMapboxMap().setCamera(cameraPosition);
+    }
+    private void setMarkerOnMap(double longitude, double latitude){
+        Bitmap bitmap = BitmapFactory.decodeResource(
+                getResources(), R.drawable.red_marker);
+        mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS);
+        AnnotationPlugin annotationAPI = AnnotationPluginImplKt.getAnnotations((MapPluginProviderDelegate)mapView);
+        PointAnnotationManager pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationAPI,mapView);
+        PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
+                .withPoint(com.mapbox.geojson.Point.fromLngLat(longitude, latitude))
+                .withIconImage(bitmap);
+        pointAnnotationManager.create(pointAnnotationOptions);
     }
 
 
@@ -143,8 +175,11 @@ public class HomeFragment extends Fragment{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mapView.onDestroy();
         binding = null;
     }
+
+
 
 
 }
