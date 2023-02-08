@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -44,6 +45,15 @@ public class SignUpActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         preferredDestinationSpinner.setAdapter(adapter);
 
+        ImageView imageView = findViewById(R.id.btn_to_main);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
+                startActivity(intent);
+            }
+        });
+
         signUpBtn = findViewById(R.id.btnSignUp);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             dbHelper.addUser(email, firstName, lastName, password, selectedContinent);
                             Toast.makeText(SignUpActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
-                            Intent loginIntent = new Intent(SignUpActivity.this, NavigationDrawerActivity.class);
+                            Intent loginIntent = new Intent(SignUpActivity.this, LogInActivity.class);
                             startActivity(loginIntent);
                         } else {
                             Toast.makeText(SignUpActivity.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
