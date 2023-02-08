@@ -88,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         app:mapbox_cameraTargetLat="31.952162"
         app:mapbox_cameraTargetLng="35.233154"
-        app:mapbox_cameraZoom="6.0" />
+        app:mapbox_cameraZoom="4.0" />
 
     <TextView
         android:id="@+id/text_longitude"
