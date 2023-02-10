@@ -164,7 +164,7 @@
         app:layout_constraintStart_toEndOf="@+id/btn_description"
         app:layout_constraintTop_toBottomOf="@+id/img_latitude7" />
 
-    <ListView
+    <ScrollView
         android:layout_width="372dp"
         android:layout_height="432dp"
         android:layout_marginStart="10dp"
@@ -175,6 +175,13 @@
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_description"
-        app:layout_constraintVertical_bias="0.961" />
+        app:layout_constraintVertical_bias="0.961" >
+
+        <LinearLayout
+            android:id="@+id/show_hide_listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

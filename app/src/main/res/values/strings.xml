@@ -15,4 +15,6 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_logout">Log Out</string>
     <string name="mapbox_access_token">pk.eyJ1Ijoic2Fsc2FiZWVsLWhhbW1vdWRlaCIsImEiOiJjbGRveXc2eHQwMjRxM3duemdpcWR5M2V2In0.8L78XSPtIrf43O_KYKqjYg</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
