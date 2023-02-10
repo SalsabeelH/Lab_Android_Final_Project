@@ -78,18 +78,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_country" />
 
-    <com.mapbox.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="355dp"
-        android:layout_height="141dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:mapbox_cameraTargetLat="31.952162"
-        app:mapbox_cameraTargetLng="35.233154"
-        app:mapbox_cameraZoom="4.0" />
-
     <TextView
         android:id="@+id/text_longitude"
         android:layout_width="119dp"
@@ -122,6 +110,15 @@
         app:layout_constraintTop_toBottomOf="@+id/text_continent" />
 
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="59dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/save_money"
+        app:layout_constraintStart_toEndOf="@+id/text_city"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/text_cost"
         android:layout_width="119dp"
@@ -135,47 +132,69 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="340dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="335dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_latitude">
+        app:layout_constraintTop_toBottomOf="@+id/text_longitude">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:src="@drawable/airplanearounderth" />
+
             <TextView
                 android:id="@+id/text_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:justificationMode="inter_word"
                 android:textSize="16sp" />
+
+            <com.mapbox.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                app:mapbox_cameraTargetLat="31.952162"
+                app:mapbox_cameraTargetLng="35.233154"
+                app:mapbox_cameraZoom="4.0" />
         </LinearLayout>
     </ScrollView>
 
     <ImageView
-        android:id="@+id/img"
-        android:layout_width="336dp"
-        android:layout_height="159dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/airplanearounderth"
+        android:id="@+id/btn_add_to_favorite2"
+        android:layout_width="38dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:clickable="true"
+        android:src="@drawable/plus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="59dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/save_money"
-        app:layout_constraintStart_toEndOf="@+id/text_city"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txt_add_favorite2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="35dp"
+        android:clickable="true"
+        android:text="add to favorite"
+        android:textColor="#0586EC"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toEndOf="@+id/btn_add_to_favorite2"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

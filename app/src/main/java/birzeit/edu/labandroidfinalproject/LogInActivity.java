@@ -53,8 +53,8 @@ public class LogInActivity extends AppCompatActivity {
                         sharedPrefManager.writeString("Email", enteredEmail);
                         sharedPrefManager.writeString("Password", enteredPassword);
                     } else {
-                        // If the "remember me" checkbox is not checked, clear the saved email and password in shared preferences
-                        sharedPrefManager.writeString("Email", "");
+                        // If the "remember me" checkbox is not checked, clear the saved password in shared preferences
+                        sharedPrefManager.writeString("Email", enteredEmail);
                         sharedPrefManager.writeString("Password", "");
                     }
                     // Start the next activity

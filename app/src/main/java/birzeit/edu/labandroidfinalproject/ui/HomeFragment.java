@@ -2,6 +2,7 @@ package birzeit.edu.labandroidfinalproject.ui;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +42,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import birzeit.edu.labandroidfinalproject.Adapters.DestinationsRecyclerAdapter;
+import birzeit.edu.labandroidfinalproject.LocalStorageManagers.DatabaseHelper;
 import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 import birzeit.edu.labandroidfinalproject.Models.Destination;
 import birzeit.edu.labandroidfinalproject.NavigationDrawerActivity;
@@ -59,8 +62,11 @@ public class HomeFragment extends Fragment{
     private TextView textCost;
     private ImageView imageView;
     private MapView mapView;
+    private ImageView btnAddToFavorite;
+    private TextView textAddFavorite;
     private RequestQueue queue;
     private ArrayList<Destination> favoriteDestinations = new ArrayList<>();
+    private DatabaseHelper dbHelper;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -78,12 +84,16 @@ public class HomeFragment extends Fragment{
         textCost = binding.textCost;
         mapView = binding.mapView;
         imageView = binding.img;
+        btnAddToFavorite = binding.btnAddToFavorite2;
+        textAddFavorite = binding.txtAddFavorite2;
+
 
         /*
-         * Get the preferred continent
+         * Get the preferred continent and user id
          */
         SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance((NavigationDrawerActivity) getActivity());
         String preferredContinent = sharedPrefManager.readString("Preferred Continent","Africa");;
+        String userEmail = sharedPrefManager.readString("Email", "");
         /*
          * Request to get all destinations using Volley and map them to Destination objects
          */
@@ -99,6 +109,8 @@ public class HomeFragment extends Fragment{
             Glide.with((NavigationDrawerActivity) getActivity()).load(randomDestination.getImg()).into(imageView);
             setCameraPosition(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
             setMarkerOnMap(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
+            initAddToFavoriteStyles(randomDestination,userEmail);
+            setListenerAddFavorite(randomDestination, userEmail);
         } else{
             queue = Volley.newRequestQueue(((NavigationDrawerActivity) getActivity()));
             String url = "https://run.mocky.io/v3/d1a9c002-6e88-4d1e-9f39-930615876bca";
@@ -128,6 +140,8 @@ public class HomeFragment extends Fragment{
                     Glide.with((NavigationDrawerActivity) getActivity()).load(randomDestination.getImg()).into(imageView);
                     setCameraPosition(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
                     setMarkerOnMap(Double.parseDouble(randomDestination.getLongitude()), Double.parseDouble(randomDestination.getLatitude()));
+                    initAddToFavoriteStyles(randomDestination,userEmail);
+                    setListenerAddFavorite(randomDestination, userEmail);
                 }
 
             }, new Response.ErrorListener() {
@@ -140,6 +154,42 @@ public class HomeFragment extends Fragment{
         }
 
         return root;
+    }
+
+    private void initAddToFavoriteStyles(Destination destination, String userEmail){
+        dbHelper = new DatabaseHelper((NavigationDrawerActivity) getActivity());
+        if (dbHelper.isFavoriteDestination(userEmail,destination.getCity())){
+            btnAddToFavorite.setImageResource(R.drawable.remove);
+            textAddFavorite.setText("remove from your favorite");
+            textAddFavorite.setTextColor(Color.parseColor("#FF0000"));
+
+        } else{
+            btnAddToFavorite.setImageResource(R.drawable.plus);
+            textAddFavorite.setText("add to favorite");
+            textAddFavorite.setTextColor(Color.parseColor("#0586EC"));
+        }
+    }
+
+    private void setListenerAddFavorite(Destination destination ,String userEmail){
+        btnAddToFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dbHelper.isFavoriteDestination(userEmail,destination.getCity())){
+                    dbHelper.deleteFavoriteDestination(userEmail, destination.getCity());
+                    btnAddToFavorite.setImageResource(R.drawable.plus);
+                    textAddFavorite.setText("add to favorite");
+                    textAddFavorite.setTextColor(Color.parseColor("#0586EC"));
+                } else{
+                    dbHelper.addFavoriteDestination(userEmail, destination.getCity(),destination.getCountry(), destination.getContinent(), destination.getLongitude(),destination.getLatitude(),destination.getCost(), destination.getImg(), destination.getDescription());
+                    btnAddToFavorite.setImageResource(R.drawable.remove);
+                    textAddFavorite.setText("remove from your favorite");
+                    textAddFavorite.setTextColor(Color.parseColor("#FF0000"));
+                }
+                ArrayList<Destination> favoriteDestinations = new ArrayList<>(dbHelper.getAllFavoriteDestinationsByEmail(userEmail));
+                FavoriteFragment.adapter = new DestinationsRecyclerAdapter(favoriteDestinations);
+                FavoriteFragment.recyclerView.setAdapter(FavoriteFragment.adapter);
+            }
+        });
     }
 
     private void setCameraPosition(double longitude, double latitude){

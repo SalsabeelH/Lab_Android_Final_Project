@@ -165,17 +165,15 @@
         app:layout_constraintTop_toBottomOf="@+id/img_latitude7" />
 
     <ScrollView
-        android:layout_width="372dp"
-        android:layout_height="432dp"
+        android:id="@+id/scrollView3"
+        android:layout_width="373dp"
+        android:layout_height="370dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_description"
-        app:layout_constraintVertical_bias="0.961" >
+        app:layout_constraintTop_toBottomOf="@+id/btn_description">
 
         <LinearLayout
             android:id="@+id/show_hide_listView"
@@ -183,5 +181,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"></LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/btn_add_to_favorite1"
+        android:layout_width="38dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:src="@drawable/plus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <TextView
+        android:id="@+id/txt_add_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:text="add to favorite"
+        android:textColor="#0586EC"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toEndOf="@+id/btn_add_to_favorite1"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
