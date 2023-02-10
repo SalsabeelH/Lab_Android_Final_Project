@@ -35,8 +35,22 @@ public class LogInActivity extends AppCompatActivity {
         CheckBox rememberMe = (CheckBox) findViewById(R.id.rememberMe);
         SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
         boolean loggedIn = sharedPrefManager.readBoolean("loggedIn", false);
-        email.setText(sharedPrefManager.readString("Email", ""));
-        password.setText(sharedPrefManager.readString("Password", ""));
+
+        if (loggedIn == true){
+            email.setText(sharedPrefManager.readString("Email", ""));
+            password.setText(sharedPrefManager.readString("Password", ""));
+            rememberMe.setChecked(true);
+            // no need to enter password and email again
+            Intent intent = new Intent(LogInActivity.this, NavigationDrawerActivity.class);
+            startActivity(intent);
+            finish();
+
+        } else{
+            email.setText("");
+            password.setText("");
+            rememberMe.setChecked(false);
+        }
+
 
         logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,10 +66,12 @@ public class LogInActivity extends AppCompatActivity {
                     if (rememberMe.isChecked()) {
                         sharedPrefManager.writeString("Email", enteredEmail);
                         sharedPrefManager.writeString("Password", enteredPassword);
+                        sharedPrefManager.writeBoolean("loggedIn", true);
                     } else {
                         // If the "remember me" checkbox is not checked, clear the saved password in shared preferences
                         sharedPrefManager.writeString("Email", enteredEmail);
                         sharedPrefManager.writeString("Password", "");
+                        sharedPrefManager.writeBoolean("loggedIn", false);
                     }
                     // Start the next activity
                     Intent intent = new Intent(LogInActivity.this, NavigationDrawerActivity.class);

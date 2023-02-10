@@ -25,7 +25,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 import birzeit.edu.labandroidfinalproject.Models.Continent;
@@ -39,7 +38,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityNavigationDrawerBinding binding;
     private RequestQueue queue;
-    private ArrayList<Destination> favoriteDestinations = new ArrayList<>();
+    private ArrayList<Destination> preferredDestinations = new ArrayList<>();
     private ArrayList<Continent> continentDestinations = new ArrayList<>();
     private boolean dataReady = false;
 
@@ -57,7 +56,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_all, R.id.nav_favorite, R.id.nav_profile,R.id.nav_sorted)
+                R.id.nav_home, R.id.nav_all, R.id.nav_favorite, R.id.nav_profile,R.id.nav_sorted,R.id.nav_logout)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer);
@@ -91,7 +90,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         Destination destination = gson.fromJson(String.valueOf(obj),Destination.class);
                         if(destination.getContinent().equals(preferredContinent))
-                            favoriteDestinations.add(destination);
+                            preferredDestinations.add(destination);
                         for(int j = 0 ; j < continents.length ; ++j){
                             if(destination.getContinent().equals(continents[j])){
                                 continentDestinations.get(j).getDestinations().add(destination);
@@ -120,17 +119,19 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 
     }
 
+
+
     public boolean isDataReadyNow() {
         return dataReady;
     }
 
-    public ArrayList<Destination> getFavoriteDestinations(){
-        return favoriteDestinations;
+    public ArrayList<Destination> getPreferredDestinations(){
+        return preferredDestinations;
     }
 
     public Destination getRandomDestination(){
-        int randomIndex = getRandomNumber(0,favoriteDestinations.size());
-        return favoriteDestinations.get(randomIndex);
+        int randomIndex = getRandomNumber(0, preferredDestinations.size());
+        return preferredDestinations.get(randomIndex);
     }
 
 

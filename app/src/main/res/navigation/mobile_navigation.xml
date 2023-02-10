@@ -32,4 +32,9 @@
         android:name="birzeit.edu.labandroidfinalproject.ui.SortedFragment"
         android:label="@string/menu_sorted"
         tools:layout="@layout/fragment_sorted" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="birzeit.edu.labandroidfinalproject.ui.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

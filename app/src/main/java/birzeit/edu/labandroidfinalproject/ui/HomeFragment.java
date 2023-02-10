@@ -42,7 +42,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import birzeit.edu.labandroidfinalproject.Adapters.DestinationsRecyclerAdapter;
 import birzeit.edu.labandroidfinalproject.LocalStorageManagers.DatabaseHelper;
 import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 import birzeit.edu.labandroidfinalproject.Models.Destination;
@@ -65,7 +64,7 @@ public class HomeFragment extends Fragment{
     private ImageView btnAddToFavorite;
     private TextView textAddFavorite;
     private RequestQueue queue;
-    private ArrayList<Destination> favoriteDestinations = new ArrayList<>();
+    private ArrayList<Destination> preferredDestinations = new ArrayList<>();
     private DatabaseHelper dbHelper;
 
 
@@ -124,7 +123,7 @@ public class HomeFragment extends Fragment{
                             Gson gson = new Gson();
                             Destination destination = gson.fromJson(String.valueOf(obj),Destination.class);
                             if(destination.getContinent().equals(preferredContinent))
-                                favoriteDestinations.add(destination);
+                                preferredDestinations.add(destination);
                         } catch (JSONException exception) {
                             Log.d("volley_error", exception.toString());
                         }
@@ -185,9 +184,6 @@ public class HomeFragment extends Fragment{
                     textAddFavorite.setText("remove from your favorite");
                     textAddFavorite.setTextColor(Color.parseColor("#FF0000"));
                 }
-                ArrayList<Destination> favoriteDestinations = new ArrayList<>(dbHelper.getAllFavoriteDestinationsByEmail(userEmail));
-                FavoriteFragment.adapter = new DestinationsRecyclerAdapter(favoriteDestinations);
-                FavoriteFragment.recyclerView.setAdapter(FavoriteFragment.adapter);
             }
         });
     }
@@ -214,8 +210,8 @@ public class HomeFragment extends Fragment{
 
 
     public Destination getRandomDestination(){
-        int randomIndex = getRandomNumber(0,favoriteDestinations.size());
-        return favoriteDestinations.get(randomIndex);
+        int randomIndex = getRandomNumber(0, preferredDestinations.size());
+        return preferredDestinations.get(randomIndex);
     }
 
     public int getRandomNumber(int min, int max) {
