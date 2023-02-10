@@ -2,6 +2,7 @@ package birzeit.edu.labandroidfinalproject.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,15 @@ public class LogoutFragment extends Fragment {
         SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance((NavigationDrawerActivity) getActivity());
         sharedPrefManager.writeBoolean("loggedIn", false);
 
-        // Start the next activity
-        Intent intent = new Intent((NavigationDrawerActivity) getActivity(), LogInActivity.class);
-        startActivity(intent);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Start the next activity
+                Intent intent = new Intent((NavigationDrawerActivity) getActivity(), LogInActivity.class);
+                startActivity(intent);
+            }
+        }, 2000);
 
         return root;
     }

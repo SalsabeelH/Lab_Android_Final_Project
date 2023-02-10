@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import birzeit.edu.labandroidfinalproject.Models.Destination;
+import birzeit.edu.labandroidfinalproject.Models.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -87,6 +88,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PASSWORD, password);
         values.put(COLUMN_PREFERRED_TRAVEL_DESTINATIONS, preferredTravelDestinations);
         db.insert(TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public void updateUser(String email, String firstName, String lastName, String password, String preferredTravelDestinations) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_FIRST_NAME, firstName);
+        values.put(COLUMN_LAST_NAME, lastName);
+        values.put(COLUMN_PASSWORD, password);
+        values.put(COLUMN_PREFERRED_TRAVEL_DESTINATIONS, preferredTravelDestinations);
+        db.update(TABLE_NAME, values, " email = ?", new String[]{email});
         db.close();
     }
 
@@ -210,9 +223,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return false;
     }
-    public Cursor getUser(String email){
+
+    public User getUserByEmail(String email){
+        User user = null;
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM users WHERE email = ?", new String[] {email});
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE email = ?", new String[] {email});
+        while (cursor.moveToNext()){
+            user = new User(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+        }
+        return user;
     }
 
     public String getUserPreferredContinentByEmail(String email){

@@ -6,17 +6,155 @@
     android:layout_height="match_parent"
     tools:context=".ui.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_profile"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_edit"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_confirm_password"
+        app:srcCompat="@drawable/delivery" />
+
+
+    <EditText
+        android:id="@+id/text_edit_email"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="76dp"
+        android:clickable="false"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="41dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/text_edit_email"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mail" />
+    //////////////////////////////
+
+    <ImageView
+        android:layout_width="44dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/text_edit_first_name"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_email"
+        app:srcCompat="@drawable/user" />
+
+    <EditText
+        android:id="@+id/text_edit_first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="76dp"
+        android:ems="10"
+        android:hint="First Name"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_email" />
+
+    //////////////////
+
+    <ImageView
+        android:layout_width="44dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/text_edit_last_name"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_first_name"
+        app:srcCompat="@drawable/user1" />
+
+    <EditText
+        android:id="@+id/text_edit_last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="76dp"
+        android:ems="10"
+        android:hint="Last Name"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_first_name" />
+
+    ///////////////////////////////////////////
+    <EditText
+        android:id="@+id/text_edit_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="76dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_last_name" />
+
+    <ImageView
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/text_edit_password"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_last_name"
+        app:srcCompat="@drawable/padlock2" />
+    //////////////////////////////////////
+    <EditText
+        android:id="@+id/text_edit_confirm_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="76dp"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_password" />
+
+    <ImageView
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/text_edit_confirm_password"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_password"
+        app:srcCompat="@drawable/padlock2" />
+    //////////////////////
+
+
+    ///////////////////////
+
+
+    <Spinner
+        android:id="@+id/spinner_edit"
+        android:layout_width="208dp"
+        android:layout_height="61dp"
+
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="76dp"
+        android:ems="10"
+        android:hint="Choose your Destination"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_confirm_password"
+        app:srcCompat="@drawable/padlock2" />
+
+    //////
+
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="117dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:text="update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_edit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

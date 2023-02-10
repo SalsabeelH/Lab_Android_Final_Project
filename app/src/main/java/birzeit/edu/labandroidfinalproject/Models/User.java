@@ -4,23 +4,24 @@ package birzeit.edu.labandroidfinalproject.Models;
 
 public class User {
 
-        private int id;
         private String email;
         private String firstName;
         private String lastName;
         private String password;
-        private String confirmPassword;
         private String preferredTravelDestinations;
 
-        public int getId() {
-            return id;
-        }
+    public User() {
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public User(String email, String firstName, String lastName, String password, String preferredTravelDestinations) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.preferredTravelDestinations = preferredTravelDestinations;
+    }
 
-        public String getEmail() {
+    public String getEmail() {
             return email;
         }
 
@@ -52,13 +53,6 @@ public class User {
             this.password = password;
         }
 
-        public String getConfirmPassword() {
-            return confirmPassword;
-        }
-
-        public void setConfirmPassword(String confirmPassword) {
-            this.confirmPassword = confirmPassword;
-        }
 
         public String getPreferredTravelDestinations() {
             return preferredTravelDestinations;
