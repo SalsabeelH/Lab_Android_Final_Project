@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import birzeit.edu.labandroidfinalproject.LocalStorageManagers.SharedPrefManager;
 import birzeit.edu.labandroidfinalproject.Models.Continent;
@@ -39,6 +40,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
     private ActivityNavigationDrawerBinding binding;
     private RequestQueue queue;
     private ArrayList<Destination> preferredDestinations = new ArrayList<>();
+    private ArrayList<Destination> allDestinations = new ArrayList<>();
     private ArrayList<Continent> continentDestinations = new ArrayList<>();
     private boolean dataReady = false;
 
@@ -96,6 +98,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                                 continentDestinations.get(j).getDestinations().add(destination);
                             }
                         }
+                        allDestinations.add(destination);
                     } catch (JSONException exception) {
                         Log.d("volley_error", exception.toString());
                     }
@@ -128,6 +131,11 @@ public class NavigationDrawerActivity extends AppCompatActivity {
     public ArrayList<Destination> getPreferredDestinations(){
         return preferredDestinations;
     }
+
+    public List<Destination> getAllDestinations(){
+        return allDestinations;
+    }
+
 
     public Destination getRandomDestination(){
         int randomIndex = getRandomNumber(0, preferredDestinations.size());

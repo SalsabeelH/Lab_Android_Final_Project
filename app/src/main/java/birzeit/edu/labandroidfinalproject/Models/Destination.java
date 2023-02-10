@@ -1,6 +1,8 @@
 package birzeit.edu.labandroidfinalproject.Models;
 
-public class Destination {
+import java.util.Comparator;
+
+public class Destination  implements Comparator<Destination> {
 
     private String city;
     private String country;
@@ -102,4 +104,10 @@ public class Destination {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    @Override
+    public int compare(Destination destination1, Destination destination2) {
+        return (Integer.parseInt(destination1.getCost()) - Integer.parseInt(destination2.getCost()));
+    }
+
 }
